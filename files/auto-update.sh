@@ -6,23 +6,24 @@ sleep 1
 if tail -n 4 /var/log/messages | egrep "‘apf-current-systemd.tar.gz’ saved"; then
 	echo "Updating"
 	systemctl stop apf
+	INSTALL_PATH=${INSTALL_PATH:-"/etc/apf"}
 	tar xvzf apf-current-systemd.tar.gz
-	cp {/etc/apf/conf.apf,/etc/apf/allow_hosts.rules,/etc/apf/deny_hosts.rules,/etc/apf/glob_allow.rules,/etc/apf/glob_deny.rules} /root/
-	rm -rf /etc/apf/
-	mv /root/apf/files/ /etc/apf/
-	mv -f {/root/conf.apf,/root/allow_hosts.rules,/root/deny_hosts.rules,/root/glob_allow.rules,/root/glob_deny.rules} /etc/apf
-	chmod -R 640 /etc/apf/
-	chmod 750 /etc/apf/apf
-	chmod 750 /etc/apf/apf-start.sh
-	chmod 750 /etc/apf/uninstall.sh
-	chmod 750 /etc/apf/firewall
-	chmod 750 /etc/apf/vnet/vnetgen
-	chmod 750 /etc/apf/extras/get_ports
-	chmod 750 /etc/apf/
-	chmod 750 /etc/apf/auto-update.sh
+	cp {$INSTALL_PATH/conf.apf,$INSTALL_PATH/allow_hosts.rules,$INSTALL_PATH/deny_hosts.rules,$INSTALL_PATH/glob_allow.rules,$INSTALL_PATH/glob_deny.rules} /root/
+	rm -rf $INSTALL_PATH/
+	mv /root/apf/files/ $INSTALL_PATH/
+	mv -f {/root/conf.apf,/root/allow_hosts.rules,/root/deny_hosts.rules,/root/glob_allow.rules,/root/glob_deny.rules} $INSTALL_PATH/
+	chmod -R 640 $INSTALL_PATH/
+	chmod 750 $INSTALL_PATH/apf
+	chmod 750 $INSTALL_PATH/apf-start.sh
+	chmod 750 $INSTALL_PATH/uninstall.sh
+	chmod 750 $INSTALL_PATH/firewall
+	chmod 750 $INSTALL_PATH/vnet/vnetgen
+	chmod 750 $INSTALL_PATH/extras/get_ports
+	chmod 750 $INSTALL_PATH/
+	chmod 750 $INSTALL_PATH/auto-update.sh
 		if [ -d "/lib/systemd/system" ]; then
-			cp /root/apf/apf-restart.sh /etc/apf/
-			chmod 755 /etc/apf/apf-restart.sh
+			cp /root/apf/apf-restart.sh $INSTALL_PATH/
+			chmod 755 $INSTALL_PATH/apf-restart.sh
 		elif [ -d "/etc/rc.d/init.d" ]; then       
 			chmod 755 /etc/cron.daily/apf
 		elif [ -d "/etc/init.d" ]; then
