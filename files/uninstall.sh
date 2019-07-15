@@ -1,4 +1,5 @@
 #!/bin/bash
+INSTALL_PATH=${INSTALL_PATH:-"/etc/apf"}
 if [ -d "/lib/systemd/system" ]; then
 	/bin/systemctl disable apf.service
 	/bin/systemctl disable apf-daily.timer
@@ -19,11 +20,10 @@ elif [ -d "/etc/init.d" ]; then
 	rm -f /etc/cron.daily/apf
 	rm -f /etc/cron.weekly/apf
 fi
-rm -rf /etc/apf/
+rm -rf $INSTALL_PATH/
 rm -f /usr/local/sbin/apf
 rm -f /usr/local/sbin/apf-start.sh
 rm -f /usr/local/sbin/fwmgr
 rm -f /usr/local/sbin/apf-uninstall.sh
 rm -f /usr/local/sbin/auto-update.sh
 rm -f /etc/logrotate.d/apf
-rm -f /root/apf-current-systemd.tar.gz
