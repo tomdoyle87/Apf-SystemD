@@ -14,6 +14,7 @@ if tail -n 4 /var/log/messages | egrep "‘apf-current-systemd.tar.gz’ saved";
 	chmod -R 640 /etc/apf/
 	chmod 750 /etc/apf/apf
 	chmod 750 /etc/apf/apf-start.sh
+	chmod 750 /etc/apf/uninstall.sh
 	chmod 750 /etc/apf/firewall
 	chmod 750 /etc/apf/vnet/vnetgen
 	chmod 750 /etc/apf/extras/get_ports
