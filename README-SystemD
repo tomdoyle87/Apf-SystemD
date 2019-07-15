@@ -8,8 +8,12 @@ Auto Updates)
 The install script downloads the current version of apf-systemd (works on none systemd distributions aswell) to /root/apf-current-systemd.tar.gz 
 (unless already downloaded to this location.) This file needs to remain in place for auto updates to work. 
 
-Checks for updates are scheduled for once a week and apf-systed is updated if an update is avaiable. 
-For manual updates/check issue: /usr/local/sbin/auto-update.sh
+Checks for updates are scheduled for once a week and Apf-SystemD is updated if an update is avaiable. 
+For manual updates/check issue: /usr/local/sbin/auto-update.sh 
+
+Auto updating is not supported with a custom install, so if using a custom install path you should disable this feature 
+(systemd: systemctl disable update-apf.timer, systemctl stop update-apf.timer & systemctl disable update-apf.service or SystemV:
+rm -f /etc/cron.weekly/apf). Manual check INSTALL_PATH=/etc/yourpath /usr/local/sbin/auto-update.sh
 
 Installation: Boot Loading)
 On installation APF will install a Systemd unit file or an init script to /etc/init.d/apf
@@ -41,3 +45,4 @@ is, enable it with the 'apf -s' command when desired and disable it with the
 
 3. Uninstall)
 Also comes with an uninstall script: /usr/local/sbin/apf-uninstall.sh
+Uninstall custom install path: INSTALL_PATH=/etc/yourpath /usr/local/sbin/apf-uninstall.sh
