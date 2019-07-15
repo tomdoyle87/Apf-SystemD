@@ -1,3 +1,43 @@
-Fork of rfxn/advanced-policy-firewall to support systemd.
+Fork of rfxn/advanced-policy-firewall to support systemd. This A readme specific to changes made for this fork. 
 
+1. Auto Updates
+2. Installation: Boot Loading
+3. Uninstall
+
+Auto Updates)
+The install script downloads the current version of apf-systemd (works on none systemd distributions aswell) to /root/apf-current-systemd.tar.gz 
+(unless already downloaded to this location.) This file needs to remain in place for auto updates to work. 
+
+Checks for updates are scheduled for once a week and apf-systed is updated if an update is avaiable. 
+For manual updates/check issue: /usr/local/sbin/auto-update.sh
+
+Installation: Boot Loading)
+On installation APF will install a Systemd unit file or an init script to /etc/init.d/apf
+or systemd unit file depending on what your distro supports, both are configured to load on boot. If you are setting up APF in a more
+custom situation then you may follow the below instructions.
+
+The modes of operation for having APF firewall your system
+and each has no real benefit except tailoring itself to your needs.
+
+This version now includes a systemd startup unit file and apf  will be automatically configured if your distrobution supports. 
+
+The next option to setup APF in the init system with chkconfig (done by
+default during install, if your disto supports SystemV init); as detailed below:
+
+chkconfig --add apf
+chkconfig --level 345 apf on
+
+Secondly, you can add the following string too the bottom of the
+/etc/rc.local file:
+
+sh -c "/etc/apf/apf -s" &
+
+It is NOT recommended that you use both of these startup methods together,
+for most systems the init script via chkconfig should be fine.
+
+The third is to simply run APF in an on-demand fashion. That
+is, enable it with the 'apf -s' command when desired and disable it with the
+'apf -f' when desired.
+
+3. Uninstall)
 Also comes with an uninstall script: /usr/local/sbin/apf-uninstall.sh
