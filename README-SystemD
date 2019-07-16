@@ -1,3 +1,5 @@
+(C) 2019, Tom Doyle <tom@email-doyle.uk>
+
 Fork of rfxn/advanced-policy-firewall to support systemd. This A readme specific to changes made for this fork. 
 
 1. Auto Updates
@@ -6,7 +8,7 @@ Fork of rfxn/advanced-policy-firewall to support systemd. This A readme specific
 
 Auto Updates)
 The install script downloads the current version of apf-systemd (works on none systemd distributions aswell) to /root/apf-current-systemd.tar.gz 
-(unless already downloaded to this location.) This file needs to remain in place for auto updates to work. 
+(unless already downloaded to this location), from https://tomsdomain.co.uk/apf-systemd/apf-current-systemd.tar.gz. This file needs to remain in place for auto updates to work. 
 
 Checks for updates are scheduled for once a week and Apf-SystemD is updated if an update is avaiable. 
 For manual updates/check issue: /usr/local/sbin/auto-update.sh 
