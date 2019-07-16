@@ -2,11 +2,11 @@
 #
 ##
 # Advanced Policy Firewall (APF) v1.7.6
-#             (C) 2002-2016, R-fx Networks <proj@rfxn.com>
-#             (C) 2016, Ryan MacDonald <ryan@rfxn.com>
+#		(C) 2002-2016, R-fx Networks <proj@rfxn.com>
+#		(C) 2016, Ryan MacDonald <ryan@rfxn.com>
 # This program may be freely redistributed under the terms of the GNU GPL v2
 ##
-#
+#		(C) 2019, Tom Doyle <tom@email-doyle.uk> - Systemd Changes & auto-update.  
 INSTALL_PATH=${INSTALL_PATH:-"/etc/apf"}
 BINPATH=${BINPATH:-"/usr/local/sbin/apf"}
 WRAPPERPATH=${WRAPPERPATH:-"/usr/local/sbin/apf-start.sh"}
