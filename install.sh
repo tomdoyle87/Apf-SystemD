@@ -27,7 +27,7 @@ install() {
 	chmod 750 $INSTALL_PATH/uninstall.sh
 	cp -pf .ca.def importconf $INSTALL_PATH/extras/
 	mkdir $INSTALL_PATH/doc
-	cp README CHANGELOG COPYING.GPL $INSTALL_PATH/doc
+	cp README README-SystemD CHANGELOG COPYING.GPL $INSTALL_PATH/doc
         ln -fs $INSTALL_PATH/apf $BINPATH
 	ln -fs $INSTALL_PATH/auto-update.sh /usr/local/sbin/auto-update.sh
 	ln -fs $INSTALL_PATH/uninstall.sh /usr/local/sbin/apf-uninstall.sh
