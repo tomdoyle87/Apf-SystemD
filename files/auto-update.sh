@@ -29,8 +29,19 @@ if tail -n 4 /var/log/messages | egrep "‘apf-current-systemd.tar.gz’ saved";
 		elif [ -d "/etc/init.d" ]; then
         		chmod 755 /etc/cron.daily/apf
 		fi
+	cp -pf {/root/apf/.ca.def,/root/apf/importconf} $INSTALL_PATH/extras/
+	mkdir $INSTALL_PATH/doc
+	cp {/root/apf/README,/root/apf/README-SystemD,/root/apf/CHANGELOG,/root/apf/COPYING.GPL} $INSTALL_PATH/doc
+	$INSTALL_PATH/vnet/vnetgen
+		if [ -f "/usr/bin/dialog" ] && [ -d "$INSTALL_PATH/extras/apf-m" ]; then
+			last=`pwd`
+			cd $INSTALL_PATH/extras/apf-m/
+			sh install -i
+			cd $last
+		fi
 	systemctl start apf
 	rm -rf /root/apf/
+	echo -e "Subject: Apf updated\nApf Updated, See Changelog:\n\nhttps://raw.githubusercontent.com/tomdoyle87/Apf-SystemD/master/CHANGELOG" | sendmail root
 	exit
 else
 	echo No Updates
