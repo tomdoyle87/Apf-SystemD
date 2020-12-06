@@ -132,3 +132,6 @@ fi
 
 rm -f .conf.apf
 echo tcp:in:d=22:s=$SSH_CLIENT | awk '{ print $1}' >> /etc/apf/allow_hosts.rules
+TRUSTED=$(route | grep '^default' | grep -o '[^ ]*$')
+sed -i "s/eth0/$TRUSTED/" /etc/apf/conf.apf
+unset TRUSTED
