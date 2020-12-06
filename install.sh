@@ -131,3 +131,4 @@ else
 fi
 
 rm -f .conf.apf
+echo tcp:in:d=22:s=$SSH_CLIENT | awk '{ print $1}' >> /etc/apf/allow_hosts.rules
